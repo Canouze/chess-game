@@ -7,8 +7,8 @@ public abstract class Piece {
     private int yPos;
     private boolean isActive;
 
-    public Piece(){
-        isWhite = true;
+    public Piece(boolean colour){
+        isWhite = colour;
         isActive = true;
     }
 
@@ -23,5 +23,9 @@ public abstract class Piece {
         else{
             return false;
         }
+    }
+
+    public boolean indivCheck(int currX, int currY, int desX, int desY, Piece piece){
+        return true;
     }
 }
