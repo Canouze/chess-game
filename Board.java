@@ -1,6 +1,8 @@
 public class Board {
 
     private Piece[][] boardArray;
+    private Piece[] capturedWhite;
+    private Piece[] capturedBlack;
 
     public Board(){
         boardArray = new Piece[8][8];
@@ -52,7 +54,7 @@ public class Board {
             strBuild1.append("\n");
             for(int j=0; j<8; j++){
                 if(boardArray[j][i]==null){
-                    strBuild1.append("|| Blank  ");
+                    strBuild1.append("||  ----  ");
                 }
                 else{
                     strBuild1.append("||  "+boardArray[j][i].getPieceName()+"  ");
@@ -62,17 +64,32 @@ public class Board {
         return strBuild1.toString();
     }
 
+    public int[][] checkThreathened(int[][] threathArray){
+        for(int i=0; i<threathArray.length; i++){
+            if(threathArray[i][0]==10){
+                continue;
+            }
+            else if(boardArray[threathArray[i][0]][threathArray[i][1]]!=null){
+                threathArray[i][0]=10;
+            }
+        }
+        return threathArray;
+    }
+
     public void movePiece(int currX, int currY, int desX, int desY){
         if(boardArray[desX][desY]!=null){
             if(boardArray[currX][currY].getColour()==boardArray[desX][desY].getColour()){
-                System.out.println("That move is not allowed, the square is already occupied by one of your pieces.");
+                System.out.println("\nThat move is not allowed, the square is already occupied by one of your pieces.");
             }
         }
-        else if(!boardArray[currX][currY].indivCheck(currX, currY, desX, desY, boardArray[desX][desY])){
-            System.out.println("That piece is unable to move to the square you have selected.");
+        else if(!boardArray[currX][currY].indivCheck(currX, currY, desX, desY, boardArray[currX][currY], boardArray[desX][desY], checkThreathened(boardArray[currX][currY].threathening(currX, currY)))){
+            System.out.println("\nThat piece is unable to move to the square you have selected.");
         }
         else{
-            System.out.println("That move is ok.");
+            System.out.println("\nThis move is ok");
+            boardArray[desX][desY]=boardArray[currX][currY];
+            boardArray[currX][currY]=null;
+            System.out.println(printBoard());
         }
     }
 }

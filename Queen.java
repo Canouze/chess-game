@@ -1,6 +1,6 @@
 public class Queen extends Piece{
 
-    private String pieceName = "Queen";
+    private String pieceName = "Quee";
 
     public Queen(boolean colour){
         super(colour);

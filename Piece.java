@@ -25,7 +25,15 @@ public abstract class Piece {
         }
     }
 
-    public boolean indivCheck(int currX, int currY, int desX, int desY, Piece piece){
+
+    public boolean indivCheck(int currX, int currY, int desX, int desY, Piece thisPiece, Piece onDesired, int[][] threathening){
         return true;
     }
+
+    public int[][] threathening(int currX, int currY){
+        int[][] placeholder = new int[1][1];
+        return placeholder;
+    }
+
+
 }

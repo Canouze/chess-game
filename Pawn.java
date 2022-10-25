@@ -11,22 +11,29 @@ public class Pawn extends Piece{
         return pieceName;
     }
 
-    public boolean indivCheck(int currX, int currY, int desX, int desY, Piece piece){
+    public boolean indivCheck(int currX, int currY, int desX, int desY, Piece thisPiece, Piece onDesired){
         if(firstMove){
-            if(desY-currY<1 || desY-currY>2 ){
+            if(Math.abs(desY-currY)<1 || Math.abs(desY-currY)>2) {
                 return false;
             }
         }
         else{
-            if(desY-currY!=1){
+            if(Math.abs(desY-currY)!=1){
                 return false;
             }
         }
-        if(desX-currX<-1||desX-currX>1){
+        if(firstMove && (Math.abs(desY-currY)==2) && (Math.abs(desX-currX)!=0)){
             return false;
         }
-        else
-            return true;
+        if(Math.abs(desX-currX)<-1||Math.abs(desX-currX)>1){
+            return false;
+        }
+        if(onDesired!=null){
+            if(onDesired.getColour()==thisPiece.getColour()){
+                return false;
+            }
+        }
+        return true;
     }
 
 }

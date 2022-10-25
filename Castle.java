@@ -1,6 +1,6 @@
 public class Castle extends Piece{
 
-    private String pieceName = "Castle";
+    private String pieceName = "Cast";
 
     public Castle(boolean colour){
         super(colour);
