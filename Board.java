@@ -67,9 +67,9 @@ public class Board {
     public int[][] checkThreathened(int[][] threathArray){
         for(int i=0; i<threathArray.length; i++){
             if(threathArray[i][0]==10){
-                continue;
+                break;
             }
-            else if(boardArray[threathArray[i][0]][threathArray[i][1]]!=null){
+            else if(boardArray[threathArray[i][0]][threathArray[i][1]]==null){
                 threathArray[i][0]=10;
             }
         }
@@ -91,5 +91,21 @@ public class Board {
             boardArray[currX][currY]=null;
             System.out.println(printBoard());
         }
+    }
+
+    public String print2DArray(int[][] array){
+        StringBuilder strBuild2 = new StringBuilder();
+        strBuild2.append("2D Array printout:");
+        for(int i= 0; i<array.length; i++){
+            strBuild2.append(" ");
+            for (int j=0; j<array[i].length; j++){
+                strBuild2.append(array[i][j]);
+            }
+        }
+        return strBuild2.toString();
+    }
+
+    public boolean checkActive(int currX, int currY){
+        return boardArray[currX][currY].getActive();
     }
 }

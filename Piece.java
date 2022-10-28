@@ -31,8 +31,12 @@ public abstract class Piece {
     }
 
     public int[][] threathening(int currX, int currY){
-        int[][] placeholder = new int[1][1];
+        int[][] placeholder = new int[2][2];
         return placeholder;
+    }
+
+    public boolean getActive(){
+        return isActive;
     }
 
 

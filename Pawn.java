@@ -1,17 +1,24 @@
+import java.util.Arrays;
+
 public class Pawn extends Piece{
 
     private String pieceName = "Pawn";
     private boolean firstMove = true;
 
+    private int[][] threathSquares = new int[4][2];
+
     public Pawn(boolean colour){
         super(colour);
+        for(int[] row : threathSquares) {
+            Arrays.fill(row, 10);
+        }
     }
 
     public String getPieceName(){
         return pieceName;
     }
 
-    public boolean indivCheck(int currX, int currY, int desX, int desY, Piece thisPiece, Piece onDesired){
+    public boolean indivCheck(int currX, int currY, int desX, int desY, Piece thisPiece, Piece onDesired, int[][] threathening){
         if(firstMove){
             if(Math.abs(desY-currY)<1 || Math.abs(desY-currY)>2) {
                 return false;
